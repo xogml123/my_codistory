@@ -1,19 +1,30 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Sep 30 21:42:43 2020
-
-@author: Administrator
-"""
-
 import sys
 
 inp=sys.stdin.readlines()
-maze=[]
-for i in range(len(inp)):
-    if i==0:
-        n,m=map(int,inp[i].split)
-    else:
-        maze.append(list(map(int,list(inp[i]))))
-        
+n,m=list(map(int,inp[0].split()))
+new_inp=[]
+for i in range(1,len(inp)):
+    new_inp.append(list(inp[i].strip()))
+
+dx=[1,-1,0,0]
+dy=[0,0,1,-1]
+
+queue=[[0,0]]
+new_inp[0][0]=1
+
+while queue:
+    a,b=queue[0][0],queue[0][1]
+    del queue[0]
+    for i in range(4):
+        x=a+dx[i]
+        y=b+dy[i]
+        if 0<=x<n and 0<=y<m and new_inp[x][y]=='1':
+            queue.append([x,y])
+            new_inp[x][y]=new_inp[a][b]+1
+
+print(new_inp[n-1][m-1])
+ 
+
 
     
+
