@@ -1,47 +1,45 @@
+import sys
 n,m=map(int,input().split())
 if n==1:
-    print()
-comp=[]
-adj={}
-for i in range(m):
-    comp.append(input().split())
-if n==1:
-    print(comp[o][0])
+    print(1)
+    a=input()
 else:
-    for c in comp:
-        if c[0] not in adj:
-            adj[c[0]]=c[1]
-        else:
-            adj[c[0]].append(c[1])
+    edges=[]
+    vertices={}
+    for i in range(m):
+        edges.append(sys.stdin.readlines().split())
+    for i in range(1,n+1):
+        num=0
+        for edge in edges:
+            if edge[1]==str(i):
+                num+=1
+        vertices[i]=num
 
-
-    def topo_sort(adj):
-        q = []
-        vertices = ['{0}'.format(i) for i in range(1, n + 1)]
-        while adj:
-            temp=vertices.copy()
-            for key in adj:
-                for node in adj[key]:
-                    try:
-                        temp.remove(node)
-                    except:
-                        pass
+    def topo_sort():
+        q=[]
+        while len(q)==n:
+            for vertice in vertices:
+                temp=[]
+                if vertices[vertice]==0:
+                    temp.append(vertice)
 
             q.extend(temp)
-            for t in temp:
-                vertices.remove(t)
-                del adj[t]
-        if adj=={}:
-            q.extend(vertices)
+            for vertice in vertices:
+                if vertices[vertice]==0:
+                    del vetices[vertice]
+
+            for edge in edges:
+                if edge[0] in temp:
+                    vertices[edge[1]]-=1
+            rem=[]
+            for edge in edges:
+                if edge[0] in temp:
+                    rem.append(edge)
+            for i in range(len(rem)):
+                edges.remove(rem[i])
+
         return q
-    queue=topo_sort(adj)
-    for person in queue:
-        print(person,end=' ')
-
-
-
-
-
-
-
+    queue=topo_sort()
+    for qu in queue:
+        print(qu,end=' ')
 
