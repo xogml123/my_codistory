@@ -7,26 +7,30 @@ else:
     edges=[]
     vertices={}
     for i in range(m):
-        edges.append(sys.stdin.readlines().split())
+        edges.append(sys.stdin.readline().split())
     for i in range(1,n+1):
         num=0
         for edge in edges:
             if edge[1]==str(i):
                 num+=1
-        vertices[i]=num
+        vertices[str(i)]=num
 
-    def topo_sort():
+    def topo_sort(vertices,edges):
         q=[]
-        while len(q)==n:
+        while vertices:
+            temp=[]
             for vertice in vertices:
-                temp=[]
+
                 if vertices[vertice]==0:
                     temp.append(vertice)
 
             q.extend(temp)
+            rem=[]
             for vertice in vertices:
                 if vertices[vertice]==0:
-                    del vetices[vertice]
+                    rem.append(vertice)
+            for r in rem:
+                del vertices[r]
 
             for edge in edges:
                 if edge[0] in temp:
@@ -39,7 +43,7 @@ else:
                 edges.remove(rem[i])
 
         return q
-    queue=topo_sort()
+    queue=topo_sort(vertices,edges)
     for qu in queue:
         print(qu,end=' ')
 
