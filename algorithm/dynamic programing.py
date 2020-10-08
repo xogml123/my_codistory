@@ -16,7 +16,7 @@ def fibo_iteration(n):
             memo_iteration[i]=1
         else:
             memo_iteration[i]=memo_iteration[i-1]+memo_iteration[i-2]
-
+#dynamic programing
 
 
 
