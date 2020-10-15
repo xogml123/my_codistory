@@ -17,7 +17,7 @@ def func(loc,fuel,visit):
         comp=[]
         after=[]
         for i in range(len(juyusos)):
-            if juyusos[i][0]<=loc+fuel or juyusos[i][0]>=loc-fuel:
+            if abs(loc-juyusos[i][0])<=fuel:
                 avail.append(juyusos[i])
         for juyu in avail:
             t1 = loc
@@ -32,7 +32,7 @@ def func(loc,fuel,visit):
         max_juyuso=avail[max_index]
         juyusos.remove(max_juyuso)
         visit+=1
-        func(after[max_index][0],after[max_index][1],visit)
+        return func(after[max_index][0],after[max_index][1],visit)
 result=func(0,start_fuel,0)
 print(result)
 
