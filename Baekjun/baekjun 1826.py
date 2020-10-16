@@ -6,7 +6,7 @@ juyusos=[]
 for i in range(1,n+1):
     juyusos.append(list(map(int,inp[i].split())))
 dest, start_fuel=map(int,inp[n+1].split())
-
+#greedy 적용 연료 양으로
 def func(loc,fuel,visit):
     if loc+fuel>=dest:
         return visit
