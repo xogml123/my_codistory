@@ -1,49 +1,50 @@
 import sys
-n,m=map(int,input().split())
-if n==1:
-    print(1)
-    a=input()
-else:
-    edges=[]
-    vertices={}
-    for i in range(m):
-        edges.append(sys.stdin.readline().split())
-    for i in range(1,n+1):
-        num=0
-        for edge in edges:
-            if edge[1]==str(i):
-                num+=1
-        vertices[str(i)]=num
 
-    def topo_sort(vertices,edges):
-        q=[]
-        while vertices:
-            temp=[]
-            for vertice in vertices:
+inp=sys.stdin.readlines()
+n,m=map(int,inp[0].split())
+comps=[]
+students=[i+1 for i in range(n)]
+for i in range(m):
+    comps.append(list(map(int,inp[i+1].split())))
 
-                if vertices[vertice]==0:
-                    temp.append(vertice)
+links={}
+for comp in comps:
+    if comp[1] not in links:
+        links[comp[1]]=1
+    else:
+        links[comp[1]]+=1
 
-            q.extend(temp)
-            rem=[]
-            for vertice in vertices:
-                if vertices[vertice]==0:
-                    rem.append(vertice)
-            for r in rem:
-                del vertices[r]
+for student in students:
+    if student not in links:
+        links[student]=0
+result=[]
+while list(links.values())!=[None]*n:
+    temp=[]
+    for link in links:
+        if links[link]==0:
+            temp.append(link)
+            links[link]=None
+    result.extend(temp)
+    for t in temp:
+        for comp in comps:
+            if comp[0]==t:
+                links[comp[1]]-=1
+for r in result:
+    print(r,end=' ')
 
-            for edge in edges:
-                if edge[0] in temp:
-                    vertices[edge[1]]-=1
-            rem=[]
-            for edge in edges:
-                if edge[0] in temp:
-                    rem.append(edge)
-            for i in range(len(rem)):
-                edges.remove(rem[i])
 
-        return q
-    queue=topo_sort(vertices,edges)
-    for qu in queue:
-        print(qu,end=' ')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
