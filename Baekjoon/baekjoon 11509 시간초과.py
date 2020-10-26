@@ -21,7 +21,6 @@ while ballons:
             continue
 
     result+=1
-
-print(result)
+#시간초과
 
 
