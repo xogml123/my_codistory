@@ -1,38 +1,26 @@
 import sys
-inp=sys.stdin.readlines()
+N = int(input())
+limits = map(int, sys.stdin.readline().split()) # 크레인 별 무게 제한
+M = int(input())
+packages = map(int, sys.stdin.readline().split()) # 화물 별 무게
 
-n=int(inp[0].strip('\n'))
+# 무게 제한과 화물 무게 전부 내림차순으로 정렬
+limits = sorted(limits, reverse=True)
+packages = sorted(packages, reverse=True)
 
-crains=list(map(int,inp[1].split()))
-
-m=int(inp[2].strip('\n'))
-
-boxes=list(map(int,inp[3].split()))
-
-crains.sort(reverse=True)
-boxes.sort(reverse=True)
-
-if crains[0]<boxes[len(boxes)-1]:
+# 무게 제한이 제일 높은 크레인도 제일 무거운 화물을 들 수 없는 경우
+if packages[0] > limits[0] :
     print(-1)
-else:
-    num=0
+    exit()
 
-    while boxes!=[0]*len(boxes):
-        j = 0
-        while j<len(crains):
-            for i in range(len(boxes)):
-               if boxes[i]==0:
-                   pass
-               else:
-                   if boxes[i]<=crains[j]:
-                       boxes[i]=0
-                       j+=1
-                   else:
-                       continue
-
-
-        num+=1
-    print(num)
-
-
-
+answer = 0
+# 화물이 전부 옮겨질 때까지
+while len(packages) > 0:
+    answer += 1
+    # 무게제한을 돌면서 옮길 수 있는 화물을 옮김
+    for l in limits:
+        for j in range(len(packages)):
+            if l >= packages[j]: # 화물을 옮길 수 있으면
+                del packages[j]
+                break
+print(answer)
