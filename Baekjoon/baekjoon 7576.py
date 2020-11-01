@@ -33,10 +33,11 @@ while frontier:
 
                 tomatoes[u[0] + y][u[1] + x]=1
     frontier=next
-if [0] not in tomatoes and [1] not in tomatoes:
-    print(0)
-elif [0] not in tomatoes:
-    print(num)
-else:
+if [0] in tomatoes:
     print(-1)
+else:
+    if num==-1:
+        print(0)
+    else:
+        print(num)
 
