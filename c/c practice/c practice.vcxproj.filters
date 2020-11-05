@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="c 연습 함수 지역변수.c">
+    <ClCompile Include="putchar,fputc,getchar,fgetc.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
