@@ -1,3 +1,2 @@
-﻿  putchar,fputc,getchar,fgetc.c
-C:\project\My_Codistory\c\c practice\putchar,fputc,getchar,fgetc.c(9,14): warning C4020: 'putchar': 실제 매개 변수가 너무 많습니다.
+﻿  strcpy.c
   c practice.vcxproj -> C:\project\My_Codistory\c\c practice\Debug\c practice.exe

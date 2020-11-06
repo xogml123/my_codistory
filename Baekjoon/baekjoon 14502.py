@@ -1,66 +1,68 @@
 import sys
-
+import copy
 inp=sys.stdin.readlines()
-picture=[]
+
 n,m=map(int,inp[0].split())
+mapv=[]
+results=[]
+for i in range(n):
+    mapv.append(list(map(int,inp[i+1].split())))
 
-for i in range(1,len(inp)):
-    picture.append(inp[i].split())
+dx=[0,0,-1,1]
+dy=[1,-1,0,0]
+def bfs(start,mapv):
+    frontier=[]
+    frontier.append(start)
+    visited.append(start)
+    while frontier:
+        temp=[]
+        for fron in frontier:
+            x=fron[1]
+            y=fron[0]
 
-dx=[1,-1,0,0]
-dy=[0,0,-1,1]
-zero=[]
-two=[]
+            for i in range(4):
+                x_=x+dx[i]
+                y_=y+dy[i]
+                if 0<=y_ and y_<n and 0<=x_ and x_<m and mapv[y_][x_]==0:
+                    temp.append([x_,y_])
+                    visited.append([x_,y_])
+                    mapv[y_][x_]=2
+        frontier=temp
 
-comb_3=[]
+zeros=[]
+cases=[]
 for i in range(n):
     for j in range(m):
-        if picture[i][j]=='2':
-            two.append([i,j])
-        elif picture[i][j]=='0':
-            zero.append([i,j])
+        if mapv[i][j]==0:
+            zeros.append([i,j])
+for i in range(len(zeros)-2):
+    for j in range(i+1,len(zeros)-1):
+        for k in range(j+1,len(zeros)):
+            temp=[zeros[i],zeros[j],zeros[k]]
+            cases.append(temp)
+for case in cases:
+    result=0
+    mapvc=copy.deepcopy(mapv)
+    visited=[]
+    for g in range(3):
+        mapvc[case[g][0]][case[g][1]]=1
 
-for i in range(len(zero)-2):
-    for j in range(i+1,len(zero)-1):
-        for k in range(j+1,len(zero)):
-            comb_3.append([zero[i],zero[j],zero[k]])
-def dfs(picture,s):
-    q=[s]
-    while q:
-          x,y=q.pop(0)
-          for i in range(4):
-            
-            
-            x+=dx[i]
-            y+=dy[i]
-            if (0<=x and x<m) and (0<=y and y<n) and picture[x][y]=='0':
-                picture[x][y]='2'
-                q.append([x,y])
-            
-    
-        
-            
-counters=[]
-for case in comb_3:
-    temp=picture
-    temp[case[0][0]][case[0][1]]='1'
-    temp[case[1][0]][case[1][1]]='1'
-    temp[case[2][0]][case[2][1]]='1'
-    for virus in two:
-        dfs(temp,virus)
-    counter=0
     for i in range(n):
         for j in range(m):
-            if temp[i][j]=='0':
-                counter+=1
-    counters.append(counter)
+            if mapvc[i][j] == 2 and [i,j] not in visited:
+                bfs([i, j], mapvc)
+    for i in range(n):
+        for j in range(m):
+             if mapvc[i][j] == 0:
+                result += 1
+    results.append(result)
 
-print(max(counters))
+print(max(results))
 
-            
 
-    
-            
+
+
+
 
 
 

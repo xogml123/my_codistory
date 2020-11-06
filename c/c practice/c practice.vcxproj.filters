@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="putchar,fputc,getchar,fgetc.c">
+    <ClCompile Include="strcpy.c">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
