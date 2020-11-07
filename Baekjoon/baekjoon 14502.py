@@ -24,8 +24,8 @@ def bfs(start,mapv):
                 x_=x+dx[i]
                 y_=y+dy[i]
                 if 0<=y_ and y_<n and 0<=x_ and x_<m and mapv[y_][x_]==0:
-                    temp.append([x_,y_])
-                    visited.append([x_,y_])
+                    temp.append([y_,x_])
+                    visited.append([y_,x_])
                     mapv[y_][x_]=2
         frontier=temp
 
