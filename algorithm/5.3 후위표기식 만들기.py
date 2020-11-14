@@ -1,12 +1,13 @@
 string=list(input())
 zero_nine=[str(i) for i in range(1,10)]
-
 def huwi(string,zero_nine):
     calc_stack = []
     result = []
     nums = []
     temp=[]
     sign=0
+    for ch in string:
+        
     for ch in string:
         if sign==1 :
             if ch != ')':
