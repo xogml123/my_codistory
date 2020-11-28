@@ -1,0 +1,2 @@
+C:\project\My_Codistory\c\experiment\Debug\experiment.exe
+C:\project\My_Codistory\c\experiment\Debug\experiment.pdb
