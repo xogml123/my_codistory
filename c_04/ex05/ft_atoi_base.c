@@ -1,19 +1,31 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_atoi_base.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: takim <marvin@42.fr>                       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/29 23:18:38 by takim             #+#    #+#             */
+/*   Updated: 2020/11/29 23:23:57 by takim            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdbool.h>
 
-int	is_type(char c, char *base)
+int				is_type(char c, char *base)
 {
 	if (ft_base_int(c, base) >= 0)
 		return (1);
 	else if (c == '-')
 		return (-1);
-	else if (c == ' ' || c == '\n' || c == '\t' || c == '\r' 
+	else if (c == ' ' || c == '\n' || c == '\t' || c == '\r'
 			|| c == '\v' || c == '\f')
 		return (0);
 	else
 		return (2);
 }
 
-bool	is_base(char *base)
+bool			is_base(char *base)
 {
 	int	i;
 	int	j;
@@ -29,17 +41,15 @@ bool	is_base(char *base)
 			return (false);
 		i++;
 	}
-	i = 0;
-	j = 0;
-	while (i < size)
+	i = -1;
+	j = -1;
+	while (++i < size)
 	{
-		while(j < size)
+		while (++j < size)
 		{
 			if (base[i] == base[j])
 				return (false);
-			j++;
 		}
-		i++;
 	}
 	return (true);
 }
@@ -54,9 +64,9 @@ unsigned int	ft_strlen(char *base)
 	return (count);
 }
 
-int	ft_base_int(char ch, char *base)
+int				ft_base_int(char ch, char *base)
 {
-	int	index;
+	int				index;
 	unsigned int	size;
 
 	index = 0;
@@ -70,7 +80,7 @@ int	ft_base_int(char ch, char *base)
 	return (-1);
 }
 
-int	ft_atoi_base(char *str, char *base)
+int				ft_atoi_base(char *str, char *base)
 {
 	int	result;
 	int	sign;
