@@ -20,41 +20,28 @@ int		ft_is_printable(char ch)
 		return (0);
 }
 
-char	ft_hexa(char ch)
+void	ft_putchar(char ch)
 {
-	if (ch >= 0 && ch <= 9)
-		return (ch + 48);
-	else
-		return (ch + 87);
-}
-
-void	ft_unprintable_print(char ch)
-{
-	int		target;
-	char	q;
-	char	r;
-
-	target = (int)ch;
-	write(1, "\\", 2);
-	q = ch / 16;
-	r = ch % 16;
-	q = ft_hexa(q);
-	r = ft_hexa(r);
-	write(1, &q, 1);
-	write(1, &r, 1);
+	write(1, &ch, 1);
 }
 
 void	ft_putstr_non_printable(char *str)
 {
 	int	flag;
 	int i;
+	unsigned char	current;
 
 	i = 0;
 	while (str[i] != '\0')
 	{
-		flag = ft_is_printable(str[i]);
+		current = str[i];
+		flag = ft_is_printable(current);
 		if (flag == 0)
-			ft_unprintable_print(str[i]);
+		{
+			ft_putchar('\\');
+			ft_putchar("0123456789abcdef"[current / 16]);
+			ft_putchar("0123456789abcdef"[current % 16]);
+		}
 		else
 			write(1, str + i, 1);
 		i++;

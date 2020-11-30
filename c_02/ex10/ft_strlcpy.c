@@ -10,43 +10,23 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-unsigned	int	ft_strlen(char *str)
-{
-	int				i;
-	unsigned	int	count;
-
-	i = 0;
-	count = 0;
-	while (1)
-	{
-		if (str[i] == '\0')
-			break ;
-		count++;
-		i++;
-	}
-	return (count);
-}
-
-unsigned	int	ft_strlcpy(char *dest, char *src, unsigned int size)
+unsigned int	ft_strlcpy(char *dest, char *src, unsigned int dsize)
 {
 	unsigned int	i;
-	unsigned int	min;
+	unsigned int	count;
 
+	count = 0;
 	i = 0;
-	if (size == 0)
-		return (ft_strlen(src));
-	if (ft_strlen(src) == 0)
-		return (0);
-	min = (ft_strlen(src) >= size) ? size : ft_strlen(src);
-	while (i < min - 1)
+	while (src[count] != '\0')
+		count ++;
+	if (size != 0)
 	{
-		dest[i] = src[i];
-		i++;
-	}
-	while (i < size)
-	{
+		while (src[i] != '\0' && i < (size - 1))
+		{
+			dest[i] = src[i];
+			i++;
+		}
 		dest[i] = '\0';
-		i++;
 	}
-	return (ft_strlen(src));
+	return (count);
 }

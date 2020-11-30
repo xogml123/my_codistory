@@ -14,7 +14,7 @@
 
 void	ft_hexa_print(unsigned long num, int size)
 {
-	char	str[size];
+	unsigned char	str[size];
 	int		i;
 
 	i = size - 1;

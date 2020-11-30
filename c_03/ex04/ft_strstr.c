@@ -16,6 +16,8 @@ char	*ft_strstr(char *str, char *to_find)
 	int		j;
 	char	*first;
 
+	if (*to_find == '\0')
+		return (str);
 	i = 0;
 	j = 0;
 	first = NULL;
@@ -29,6 +31,8 @@ char	*ft_strstr(char *str, char *to_find)
 				first = &str[i];
 			j++;
 		}
+		else if (first != NULL)
+			break;
 		i++;
 	}
 	if (to_find[i] == '\0')

@@ -29,9 +29,12 @@ char	*ft_strcapitalize(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (i == 0 && ft_type(str[i]) == 2)
-			str[i] -= 32;
-		else
+		if (i == 0)
+		{
+			if (ft_type(str[i]) == 2)
+				str[i] -= 32;
+		}
+		else if ( i > 0)
 		{
 			if (ft_type(str[i]) == 2 && ft_type(str[i - 1]) == 3)
 				str[i] -= 32;
