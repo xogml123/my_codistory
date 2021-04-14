@@ -1,2 +1,0 @@
-C:\project\My_Codistory\c\c practice\Debug\c practice.exe
-C:\project\My_Codistory\c\c practice\Debug\c practice.pdb
